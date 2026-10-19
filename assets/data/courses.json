@@ -1,0 +1,372 @@
+{
+  "courses": [
+    {
+      "id": "1",
+      "title": "Web Development Basics",
+      "description": "Learn the fundamentals of web development including HTML, CSS, JavaScript and modern frameworks.",
+      "thumbnailColor": "#6B9CE8",
+      "category": "Programming",
+      "rating": 4.8,
+      "studentsCount": 12400,
+      "chapters": [
+        {
+          "id": "1-1",
+          "title": "HTML & CSS",
+          "lessons": [
+            {
+              "id": "1-1-1",
+              "title": "Introduction to HTML",
+              "duration": "10:00",
+              "videoUrl": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4"
+            },
+            {
+              "id": "1-1-2",
+              "title": "HTML Project Setup",
+              "duration": "14:00",
+              "videoUrl": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/360/Jellyfish_360_10s_1MB.mp4"
+            }
+          ]
+        },
+        {
+          "id": "1-2",
+          "title": "JavaScript Basics",
+          "lessons": [
+            {
+              "id": "1-2-1",
+              "title": "Variables and Data Types",
+              "duration": "12:00",
+              "videoUrl": "https://test-videos.co.uk/vids/sintel/mp4/h264/360/Sintel_360_10s_1MB.mp4"
+            },
+            {
+              "id": "1-2-2",
+              "title": "Functions and Events",
+              "duration": "16:00",
+              "videoUrl": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4"
+            }
+          ]
+        },
+        {
+          "id": "1-3",
+          "title": "Responsive Layouts",
+          "lessons": [
+            {
+              "id": "1-3-1",
+              "title": "Flexbox and Grid",
+              "duration": "14:00",
+              "videoUrl": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/360/Jellyfish_360_10s_1MB.mp4"
+            },
+            {
+              "id": "1-3-2",
+              "title": "Mobile-first Design",
+              "duration": "18:00",
+              "videoUrl": "https://test-videos.co.uk/vids/sintel/mp4/h264/360/Sintel_360_10s_1MB.mp4"
+            }
+          ]
+        },
+        {
+          "id": "1-4",
+          "title": "Working with APIs",
+          "lessons": [
+            {
+              "id": "1-4-1",
+              "title": "HTTP and JSON",
+              "duration": "16:00",
+              "videoUrl": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4"
+            },
+            {
+              "id": "1-4-2",
+              "title": "Fetching Data",
+              "duration": "20:00",
+              "videoUrl": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/360/Jellyfish_360_10s_1MB.mp4"
+            }
+          ]
+        },
+        {
+          "id": "1-5",
+          "title": "React Fundamentals",
+          "lessons": [
+            {
+              "id": "1-5-1",
+              "title": "Components and Props",
+              "duration": "18:00",
+              "videoUrl": "https://test-videos.co.uk/vids/sintel/mp4/h264/360/Sintel_360_10s_1MB.mp4"
+            },
+            {
+              "id": "1-5-2",
+              "title": "State and Hooks",
+              "duration": "22:00",
+              "videoUrl": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4"
+            }
+          ]
+        },
+        {
+          "id": "1-6",
+          "title": "Final Project",
+          "lessons": [
+            {
+              "id": "1-6-1",
+              "title": "Build a Course Page",
+              "duration": "20:00",
+              "videoUrl": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/360/Jellyfish_360_10s_1MB.mp4"
+            },
+            {
+              "id": "1-6-2",
+              "title": "Polish and Review",
+              "duration": "24:00",
+              "videoUrl": "https://test-videos.co.uk/vids/sintel/mp4/h264/360/Sintel_360_10s_1MB.mp4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Mobile App Development",
+      "description": "Learn to plan and build responsive mobile applications with modern development tools.",
+      "thumbnailColor": "#6BBDB5",
+      "category": "Mobile",
+      "rating": 4.7,
+      "studentsCount": 9800,
+      "chapters": [
+        {
+          "id": "2-1",
+          "title": "Mobile Foundations",
+          "lessons": [
+            {
+              "id": "2-1-1",
+              "title": "Mobile App Architecture",
+              "duration": "10:00",
+              "videoUrl": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4"
+            },
+            {
+              "id": "2-1-2",
+              "title": "Development Setup",
+              "duration": "14:00",
+              "videoUrl": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/360/Jellyfish_360_10s_1MB.mp4"
+            }
+          ]
+        },
+        {
+          "id": "2-2",
+          "title": "UI Components",
+          "lessons": [
+            {
+              "id": "2-2-1",
+              "title": "Layouts and Widgets",
+              "duration": "12:00",
+              "videoUrl": "https://test-videos.co.uk/vids/sintel/mp4/h264/360/Sintel_360_10s_1MB.mp4"
+            },
+            {
+              "id": "2-2-2",
+              "title": "Navigation Patterns",
+              "duration": "16:00",
+              "videoUrl": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4"
+            }
+          ]
+        },
+        {
+          "id": "2-3",
+          "title": "State Management",
+          "lessons": [
+            {
+              "id": "2-3-1",
+              "title": "Managing App State",
+              "duration": "14:00",
+              "videoUrl": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/360/Jellyfish_360_10s_1MB.mp4"
+            },
+            {
+              "id": "2-3-2",
+              "title": "Forms and Validation",
+              "duration": "18:00",
+              "videoUrl": "https://test-videos.co.uk/vids/sintel/mp4/h264/360/Sintel_360_10s_1MB.mp4"
+            }
+          ]
+        },
+        {
+          "id": "2-4",
+          "title": "Working with APIs",
+          "lessons": [
+            {
+              "id": "2-4-1",
+              "title": "REST API Integration",
+              "duration": "16:00",
+              "videoUrl": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4"
+            },
+            {
+              "id": "2-4-2",
+              "title": "Error Handling",
+              "duration": "20:00",
+              "videoUrl": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/360/Jellyfish_360_10s_1MB.mp4"
+            }
+          ]
+        },
+        {
+          "id": "2-5",
+          "title": "Local Storage",
+          "lessons": [
+            {
+              "id": "2-5-1",
+              "title": "Persisting App Data",
+              "duration": "18:00",
+              "videoUrl": "https://test-videos.co.uk/vids/sintel/mp4/h264/360/Sintel_360_10s_1MB.mp4"
+            },
+            {
+              "id": "2-5-2",
+              "title": "Offline-first Basics",
+              "duration": "22:00",
+              "videoUrl": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Cyber Security Fundamentals",
+      "description": "Learn essential security concepts, safe coding practices and common application vulnerabilities.",
+      "thumbnailColor": "#70A6BC",
+      "category": "Security",
+      "rating": 4.6,
+      "studentsCount": 7240,
+      "chapters": [
+        {
+          "id": "3-1",
+          "title": "Security Foundations",
+          "lessons": [
+            {
+              "id": "3-1-1",
+              "title": "Threats and Risk",
+              "duration": "10:00",
+              "videoUrl": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/360/Jellyfish_360_10s_1MB.mp4"
+            },
+            {
+              "id": "3-1-2",
+              "title": "Security Principles",
+              "duration": "14:00",
+              "videoUrl": "https://test-videos.co.uk/vids/sintel/mp4/h264/360/Sintel_360_10s_1MB.mp4"
+            }
+          ]
+        },
+        {
+          "id": "3-2",
+          "title": "Web Security",
+          "lessons": [
+            {
+              "id": "3-2-1",
+              "title": "Common Web Vulnerabilities",
+              "duration": "12:00",
+              "videoUrl": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4"
+            },
+            {
+              "id": "3-2-2",
+              "title": "Input Validation",
+              "duration": "16:00",
+              "videoUrl": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/360/Jellyfish_360_10s_1MB.mp4"
+            }
+          ]
+        },
+        {
+          "id": "3-3",
+          "title": "Authentication",
+          "lessons": [
+            {
+              "id": "3-3-1",
+              "title": "Sessions and Tokens",
+              "duration": "14:00",
+              "videoUrl": "https://test-videos.co.uk/vids/sintel/mp4/h264/360/Sintel_360_10s_1MB.mp4"
+            },
+            {
+              "id": "3-3-2",
+              "title": "Access Control",
+              "duration": "18:00",
+              "videoUrl": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4"
+            }
+          ]
+        },
+        {
+          "id": "3-4",
+          "title": "Secure Development",
+          "lessons": [
+            {
+              "id": "3-4-1",
+              "title": "Secrets and Configuration",
+              "duration": "16:00",
+              "videoUrl": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/360/Jellyfish_360_10s_1MB.mp4"
+            },
+            {
+              "id": "3-4-2",
+              "title": "Security Testing",
+              "duration": "20:00",
+              "videoUrl": "https://test-videos.co.uk/vids/sintel/mp4/h264/360/Sintel_360_10s_1MB.mp4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "UI/UX Design Principles",
+      "description": "Learn user research, wireframing, visual hierarchy and accessible interface design.",
+      "thumbnailColor": "#A69BE0",
+      "category": "Design",
+      "rating": 4.5,
+      "studentsCount": 5620,
+      "chapters": [
+        {
+          "id": "4-1",
+          "title": "Design Foundations",
+          "lessons": [
+            {
+              "id": "4-1-1",
+              "title": "Visual Hierarchy",
+              "duration": "10:00",
+              "videoUrl": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4"
+            },
+            {
+              "id": "4-1-2",
+              "title": "Color and Typography",
+              "duration": "14:00",
+              "videoUrl": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/360/Jellyfish_360_10s_1MB.mp4"
+            }
+          ]
+        },
+        {
+          "id": "4-2",
+          "title": "User Research",
+          "lessons": [
+            {
+              "id": "4-2-1",
+              "title": "Personas and Journeys",
+              "duration": "12:00",
+              "videoUrl": "https://test-videos.co.uk/vids/sintel/mp4/h264/360/Sintel_360_10s_1MB.mp4"
+            },
+            {
+              "id": "4-2-2",
+              "title": "Usability Testing",
+              "duration": "16:00",
+              "videoUrl": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4"
+            }
+          ]
+        },
+        {
+          "id": "4-3",
+          "title": "Wireframing",
+          "lessons": [
+            {
+              "id": "4-3-1",
+              "title": "Low-fidelity Screens",
+              "duration": "14:00",
+              "videoUrl": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/360/Jellyfish_360_10s_1MB.mp4"
+            },
+            {
+              "id": "4-3-2",
+              "title": "Interactive Prototypes",
+              "duration": "18:00",
+              "videoUrl": "https://test-videos.co.uk/vids/sintel/mp4/h264/360/Sintel_360_10s_1MB.mp4"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
