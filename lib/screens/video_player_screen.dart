@@ -322,7 +322,9 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen>
                             child: ElevatedButton(
                               onPressed: () async {
                                 await store.markCompleted(
-                                    _lesson.id, !isComplete);
+                                  _lesson.id,
+                                  completed: !isComplete,
+                                );
                               },
                               child: Text(isComplete
                                   ? '✓ Completed — Mark Incomplete'

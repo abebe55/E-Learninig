@@ -4,11 +4,11 @@ import '../app/app_theme.dart';
 import '../services/learnflow_store.dart';
 import 'main_shell.dart';
 
-/// Login and registration screen.
+/// Login and registration screen with local mock authentication.
 ///
-/// Authentication is local-only (no backend). Credentials are stored with
-/// SharedPreferences and validated only for basic format. This is sufficient
-/// for a prototype; a production app would verify against a secure backend.
+/// Registered users are stored locally via SharedPreferences with a hashed
+/// password. Login verifies the hash — any unrecognised email or wrong password
+/// is rejected with a clear message.
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
 
@@ -26,6 +26,7 @@ class _AuthScreenState extends State<AuthScreen> {
   bool _isRegister = false;
   bool _hidePassword = true;
   bool _busy = false;
+  String? _authError; // shown inline below the form
 
   @override
   void dispose() {
@@ -39,36 +40,56 @@ class _AuthScreenState extends State<AuthScreen> {
   // ── Actions ────────────────────────────────────────────────────────────────
 
   Future<void> _submit({bool guest = false}) async {
+    setState(() => _authError = null);
+
     if (!guest && !(_formKey.currentState?.validate() ?? false)) return;
 
     if (!guest &&
         _isRegister &&
         _passwordController.text != _confirmController.text) {
-      _showSnackBar('Passwords do not match.');
+      setState(() => _authError = 'Passwords do not match.');
       return;
     }
 
     setState(() => _busy = true);
 
+    String? error;
+
     if (guest) {
-      await LearnFlowStore.instance
-          .signIn('guest@learnflow.local', name: 'Guest Learner');
-    } else {
-      await LearnFlowStore.instance.signIn(
+      await LearnFlowStore.instance.loginAsGuest();
+    } else if (_isRegister) {
+      error = await LearnFlowStore.instance.register(
         _emailController.text,
-        name: _isRegister ? _nameController.text : null,
+        _passwordController.text,
+        _nameController.text,
+      );
+    } else {
+      error = await LearnFlowStore.instance.login(
+        _emailController.text,
+        _passwordController.text,
       );
     }
 
     if (!mounted) return;
     setState(() => _busy = false);
+
+    if (error != null) {
+      setState(() => _authError = error);
+      return;
+    }
+
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (_) => const MainShell()),
       (_) => false,
     );
   }
 
-  void _toggleMode() => setState(() => _isRegister = !_isRegister);
+  void _toggleMode() {
+    setState(() {
+      _isRegister = !_isRegister;
+      _authError = null;
+    });
+  }
 
   // ── Build ──────────────────────────────────────────────────────────────────
 
@@ -90,7 +111,6 @@ class _AuthScreenState extends State<AuthScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 12),
-                // Heading
                 Text(
                   _isRegister ? 'Create Account' : 'Welcome Back',
                   style: Theme.of(context).textTheme.headlineSmall,
@@ -113,14 +133,13 @@ class _AuthScreenState extends State<AuthScreen> {
                       prefixIcon: Icon(Icons.person_outline_rounded),
                       hintText: 'Full name',
                     ),
-                    validator: (v) => (v == null || v.trim().length < 2)
-                        ? 'Enter your name'
-                        : null,
+                    validator: (v) =>
+                        (v == null || v.trim().length < 2) ? 'Enter your name' : null,
                   ),
                   const SizedBox(height: 13),
                 ],
 
-                // Email field
+                // Email
                 TextFormField(
                   controller: _emailController,
                   keyboardType: _isRegister
@@ -133,23 +152,21 @@ class _AuthScreenState extends State<AuthScreen> {
                           ? Icons.mail_outline_rounded
                           : Icons.person_outline_rounded,
                     ),
-                    hintText:
-                        _isRegister ? 'Email address' : 'Email or username',
+                    hintText: _isRegister ? 'Email address' : 'Email or username',
                   ),
                   validator: (v) {
                     final value = v?.trim() ?? '';
                     if (value.isEmpty) return 'This field is required';
                     if (_isRegister &&
-                        !RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
-                            .hasMatch(value)) {
-                      return 'Enter a valid email';
+                        !RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$').hasMatch(value)) {
+                      return 'Enter a valid email address';
                     }
                     return null;
                   },
                 ),
                 const SizedBox(height: 13),
 
-                // Password field
+                // Password
                 TextFormField(
                   controller: _passwordController,
                   obscureText: _hidePassword,
@@ -166,9 +183,8 @@ class _AuthScreenState extends State<AuthScreen> {
                       ),
                     ),
                   ),
-                  validator: (v) => (v == null || v.length < 6)
-                      ? 'Use at least 6 characters'
-                      : null,
+                  validator: (v) =>
+                      (v == null || v.length < 6) ? 'Use at least 6 characters' : null,
                 ),
 
                 // Confirm password (register only)
@@ -187,19 +203,45 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                 ],
 
-                // Forgot password (login only)
                 if (!_isRegister)
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
-                      onPressed: () => _showSnackBar(
-                        'Password reset requires a connected account service.',
+                      onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'Password reset requires a connected account service.',
+                          ),
+                        ),
                       ),
                       child: const Text('Forgot password?'),
                     ),
                   ),
 
                 const SizedBox(height: 12),
+
+                // Inline auth error (e.g. wrong password, email not found)
+                if (_authError != null) ...[
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 14,
+                      vertical: 10,
+                    ),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFEE2E2),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Text(
+                      _authError!,
+                      style: const TextStyle(
+                        color: Color(0xFFB91C1C),
+                        fontSize: 13,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                ],
 
                 // Primary CTA
                 SizedBox(
@@ -214,7 +256,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                 ),
 
-                // Social login (login screen only)
+                // Social / guest options (login screen only)
                 if (!_isRegister) ...[
                   const SizedBox(height: 18),
                   const Row(
@@ -224,10 +266,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         padding: EdgeInsets.symmetric(horizontal: 12),
                         child: Text(
                           'or continue with',
-                          style: TextStyle(
-                            color: AppTheme.muted,
-                            fontSize: 12,
-                          ),
+                          style: TextStyle(color: AppTheme.muted, fontSize: 12),
                         ),
                       ),
                       Expanded(child: Divider()),
@@ -238,14 +277,15 @@ class _AuthScreenState extends State<AuthScreen> {
                     children: [
                       Expanded(
                         child: OutlinedButton.icon(
-                          onPressed: () => _showSnackBar(
-                            'Google sign-in will be available after '
-                            'authentication is connected.',
+                          onPressed: () =>
+                              ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                'Google sign-in requires a Firebase connection.',
+                              ),
+                            ),
                           ),
-                          icon: const Icon(
-                            Icons.g_mobiledata_rounded,
-                            size: 24,
-                          ),
+                          icon: const Icon(Icons.g_mobiledata_rounded, size: 24),
                           label: const Text('Google'),
                         ),
                       ),
@@ -263,7 +303,6 @@ class _AuthScreenState extends State<AuthScreen> {
 
                 const SizedBox(height: 28),
 
-                // Switch between login / register
                 Center(
                   child: Wrap(
                     alignment: WrapAlignment.center,
@@ -294,7 +333,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
                 const SizedBox(height: 18),
                 const Text(
-                  'Demo mode: authentication is local to this device. '
+                  'Demo mode: authentication is stored locally on this device. '
                   'Do not use a real password.',
                   textAlign: TextAlign.center,
                   style: TextStyle(color: AppTheme.muted, fontSize: 11),
@@ -306,9 +345,4 @@ class _AuthScreenState extends State<AuthScreen> {
       ),
     );
   }
-
-  void _showSnackBar(String message) =>
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(message)),
-      );
 }

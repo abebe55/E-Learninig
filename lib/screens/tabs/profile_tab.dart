@@ -244,8 +244,7 @@ class _UserCard extends StatelessWidget {
             onPressed: () async {
               final value = controller.text.trim();
               if (value.length >= 2) {
-                await LearnFlowStore.instance
-                    .signIn(LearnFlowStore.instance.userEmail, name: value);
+                await LearnFlowStore.instance.updateProfileName(value);
               }
               if (dialogCtx.mounted) Navigator.pop(dialogCtx);
             },
